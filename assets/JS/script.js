@@ -59,9 +59,9 @@ axios.get('https://jsonplaceholder.typicode.com/photos?_limit=6')
    //salvo in una costante 'data' che è la propiretà che contiene l'array di oggetti:
    const object = res.data;
 
-   //ciclo l'elemento:
+   //ciclo l'array:
    object.forEach(element =>{
-      //destrutturo l'oggetto e prendo soltanto le proprietà che mi interessano:
+      //ad ogni ciclo destrutturo l'oggetto e prendo soltanto le proprietà che mi interessano:
       const {title, url} = element;
       //ad ogni ciclo richiamo la funzione che stampa in pagina:
       printCard(title, url);
