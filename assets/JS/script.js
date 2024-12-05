@@ -48,3 +48,43 @@ Testando l'Api fornita, chiamata tramite Thunder Client ho ottenuto questo risul
 Il risultato ottenuto è un array di 6 oggetti, ogni oggetto possiede 5 proprietà.
 In base alle richieste della consegna dell'esercizio, avrò bisogno della proprietà "title", che mi fornirà il testo da inserire nelle card, e del "url" che mi fornirà l'immagine.
 */
+
+//dati utili:
+const cardContainer = document.getElementById('cards-container');
+
+
+//efettuiamo la chiamata AJAX all'Api:
+axios.get('https://jsonplaceholder.typicode.com/photos?_limit=6')
+.then(res =>{
+   //salvo in una costante 'data' che è la propiretà che contiene l'array di oggetti:
+   const object = res.data;
+
+   //ciclo l'elemento:
+   object.forEach(element =>{
+      //destrutturo l'oggetto e prendo soltanto le proprietà che mi interessano:
+      const {title, url} = element;
+      //ad ogni ciclo richiamo la funzione che stampa in pagina:
+      printCard(title, url);
+   });
+
+});
+
+
+//funzione che stampa in pagina la struttura html della card:
+function printCard(title, url){
+   cardContainer.innerHTML += `
+      <div class="col">
+         <div class="pin-png">
+            <img src="assets/img/pin.svg" alt="">
+         </div>
+         <div class="card">
+            <div class="c-img">
+               <img src="${url}" alt="">
+            </div>
+            <div class="c-text">
+               <p>${title}</p>
+            </div>
+         </div>
+      </div>
+   `
+}
