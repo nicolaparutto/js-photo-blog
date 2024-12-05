@@ -57,10 +57,10 @@ const cardContainer = document.getElementById('cards-container');
 axios.get('https://jsonplaceholder.typicode.com/photos?_limit=6')
 .then(res =>{
    //salvo in una costante 'data' che è la propiretà che contiene l'array di oggetti:
-   const object = res.data;
+   const objectsArray = res.data;
 
    //ciclo l'array:
-   object.forEach(element =>{
+   objectsArray.forEach(element =>{
       //ad ogni ciclo destrutturo l'oggetto e prendo soltanto le proprietà che mi interessano:
       const {title, url} = element;
       //ad ogni ciclo richiamo la funzione che stampa in pagina:
