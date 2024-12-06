@@ -85,17 +85,16 @@ axios.get('https://jsonplaceholder.typicode.com/photos?_limit=6')
          });
       });
    }
-
 });
 
 //funzione che stampa in pagina la struttura html della card:
 function printCard(title, url){
    cardContainer.innerHTML += `
       <div class="col">
-         <div class="pin-png">
-            <img src="assets/img/pin.svg" alt="">
-         </div>
          <div class="card">
+            <div class="pin-png">
+               <img src="assets/img/pin.svg" alt="">
+            </div>
             <div class="c-img">
                <img class="card-image" src="${url}" alt="">
             </div>
