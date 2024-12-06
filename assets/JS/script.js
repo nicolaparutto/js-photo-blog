@@ -51,7 +51,7 @@ In base alle richieste della consegna dell'esercizio, avrò bisogno della propri
 
 //dati utili:
 const cardContainer = document.getElementById('cards-container');
-
+const overlayContainer = document.getElementById('overlay-box-container');
 
 //efettuiamo la chiamata AJAX all'Api:
 axios.get('https://jsonplaceholder.typicode.com/photos?_limit=6')
@@ -67,8 +67,21 @@ axios.get('https://jsonplaceholder.typicode.com/photos?_limit=6')
       printCard(title, url);
    });
 
-});
+   // gestione dell overlay-box:
+   const cardImage = document.querySelectorAll('.card-image');
+   
+   for(let i = 0; i < cardImage.length; i++){
+      cardImage[i].addEventListener('click', (event) =>{
+         overlayContainer.classList.remove('d-none');
+         
+         const closeBtn = document.getElementById('close-btn');
+         closeBtn.addEventListener('click', ()=>{
+            overlayContainer.classList.add('d-none');
+         })
+      });
+   }
 
+});
 
 //funzione che stampa in pagina la struttura html della card:
 function printCard(title, url){
@@ -79,7 +92,7 @@ function printCard(title, url){
          </div>
          <div class="card">
             <div class="c-img">
-               <img src="${url}" alt="">
+               <img class="card-image" src="${url}" alt="">
             </div>
             <div class="c-text">
                <p>${title}</p>
@@ -87,4 +100,4 @@ function printCard(title, url){
          </div>
       </div>
    `
-}
+}  
