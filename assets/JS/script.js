@@ -73,11 +73,16 @@ axios.get('https://jsonplaceholder.typicode.com/photos?_limit=6')
    for(let i = 0; i < cardImage.length; i++){
       cardImage[i].addEventListener('click', (event) =>{
          overlayContainer.classList.remove('d-none');
-         
+         overlayContainer.innerHTML = `
+         <div class="overlay-box">
+            <button id="close-btn" class="btn">Chiudi</button>
+            <img src="${event.target.src}" alt="">
+         </div>
+         `;
          const closeBtn = document.getElementById('close-btn');
          closeBtn.addEventListener('click', ()=>{
             overlayContainer.classList.add('d-none');
-         })
+         });
       });
    }
 
