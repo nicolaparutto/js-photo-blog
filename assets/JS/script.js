@@ -67,21 +67,28 @@ axios.get('https://jsonplaceholder.typicode.com/photos?_limit=6')
       printCard(title, url);
    });
 
-   // gestione dell overlay-box:
+   //gestione dell overlay-box:
+   //una volta che ho stampato le 6 card, l'elemento html "esiste", quindi posso selezionare l'immagine e salvarla in una variabile.
    const cardImage = document.querySelectorAll('.card-image');
-   
+   //cardImage conterrà quindi una NodeList (un array) con dentro tutte le immagini delle card.
+   //quindi creo un ciclo for sull'array, per prendermi una alla volta, tutte le card:
    for(let i = 0; i < cardImage.length; i++){
+      //ad ogni card, assegno l'evento al 'click':
       cardImage[i].addEventListener('click', (event) =>{
+         //faccio apparire l'overlay:
          overlayContainer.classList.remove('d-none');
+         //stampo in pagina l'elemento che conterrà l'immagine e il bottone:
          overlayContainer.innerHTML = `
          <div class="overlay-box">
             <button id="close-btn" class="btn">Chiudi</button>
             <img src="${event.target.src}" alt="">
          </div>
          `;
+         //salvo il bottone a cui assegnerò la funzione di chiusura dell'overlay:
          const closeBtn = document.getElementById('close-btn');
+         //assegno al bottone 'chiudi' la funzione:
          closeBtn.addEventListener('click', ()=>{
-            overlayContainer.classList.add('d-none');
+         overlayContainer.classList.add('d-none');
          });
       });
    }
@@ -105,3 +112,17 @@ function printCard(title, url){
       </div>
    `
 }  
+
+
+
+/*
+Spiegazione di event.target.src:
+---------------------------------------
+Quando si crea un evento, viene generato tramite la funzione, un oggetto evento,
+questo oggetto contiene le informazioni dell'evento stesso, informazioni come il target.
+.target è una proprietà dell'oggetto evento, e fa riferimento all'oggetto stesso
+a cui è stato assegnato l'evento.
+Quindi selezionando l'oggetto 'event.target', si può accedere alle proprietà stesse di quell'oggetto,
+in questo caso ci serviva la proprietà 'src' che conteneva il link dell'immagine.
+---------------------------------------
+*/
